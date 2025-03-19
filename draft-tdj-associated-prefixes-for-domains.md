@@ -49,9 +49,9 @@ author:
     organization: Microsoft
     email: tojens.ietf@gmail.com
  -
-    fullname: TODO: David
-    organization: 
-    email: 
+    fullname: David Redekop
+    organization: Adam Networks Inc.
+    email: david.ietf@adamnet.works
  -
     fullname: TODO: John
     organization: 
