@@ -3,7 +3,7 @@ title: "Associated IP Prefixes for Domain Names"
 abbrev: "associated-prefixes"
 category: std
 
-docname: draft-tdj-dnsop-associated-prefixes-for-domains-00
+docname: draft-tdj-dnsop-associated-prefixes-for-domains-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 v: 3
 keyword:
