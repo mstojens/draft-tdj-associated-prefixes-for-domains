@@ -41,11 +41,6 @@ for a domain name as part of the DNS query.
 
 --- middle
 
-# Conventions and Definitions
-
-{::boilerplate bcp14-tagged}
-
-
 # Introduction
 
 It is common for services to be associated with domain names
@@ -62,6 +57,11 @@ This document defines a mechanism for domain name owners to advertise
 any IP address prefixes that are associated with a domain name. This allows
 client peers to predict which IP addresses may end up in use when contacting
 a given service.
+
+
+# Conventions and Definitions
+
+{::boilerplate bcp14-tagged}
 
 
 # Terminology
@@ -171,7 +171,7 @@ unencrypted DNS over UDP.
 
 ## TTLs for SVCB and CIDRS records
 
-Servers SHOULD NOT have a TTL value for SVCB records containing the "%%%%%%%%%"
+Servers SHOULD NOT have a TTL value for SVCB records containing the "cidrs"
 key that are less than the TTL values for CIDRS records for the same domain
 name. This would cause the client to re-check for the presence of CIDRS records
 that it will still have cached.
@@ -204,9 +204,6 @@ services they depend on but do not yet support this document.
 How to accomplish such a mapping is left to implementors as a non-standard
 mechanism. This is out of scope for this document, which only defines
 advertisement of IP addresses associated with a given name directly.
-
-{closing}
-
 
 
 # Security Considerations
