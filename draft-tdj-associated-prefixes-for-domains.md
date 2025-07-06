@@ -46,16 +46,15 @@ venue:
 author:
  -
     fullname: Tommy Jensen
-    organization: Microsoft
     email: tojens.ietf@gmail.com
  -
     fullname: David Redekop
     organization: Adam Networks Inc.
     email: david.ietf@adamnet.works
  -
-    fullname: TODO: John
-    organization: 
-    email: 
+    fullname: John Todd
+    organization: Quad9
+    email: jtodd@quad9.net
 
 normative:
 
@@ -105,9 +104,7 @@ IP prefix is interesting).
 
 ### Wire format
 
-CIDRS RR data on the wire uses the following format:
-
-(TODO: ASCII art of the fields below)
+CIDRS RR data on the wire uses the following format (TODO: ASCII art of the fields below):
 
 - IP family (4 bits): indicates which version of the Internet Protocol the prefix belongs to
 
@@ -121,15 +118,13 @@ CIDRS RR data on the wire uses the following format:
 
 - Port Range End (16 bits): the highest port number in the included range
 
-- Protocol Number (8 bits): a value from the Assigned Internet Protocol Numbers IANA registry (255 if no associated protocol shoudl be defined)
+- Protocol Number (8 bits): a value from the Assigned Internet Protocol Numbers IANA registry (255 if no associated protocol should be defined)
 
-(TODO: specific examples that match specific example from zone file format section)
 
 ### Zone file format
 
-(TODO: definition, which I can do later but John may have stronger opinions on since I don't deal with these in my day job?)
+TODO: will do after the idea survives initial contact with the WG
 
-(TODO: specific examples that match specific example from wire format section)
 
 ### Justification for new RR type
 
@@ -149,7 +144,7 @@ there is no expectation that the resulting traffic the querying client will
 send to these IP addresses will be able to prevent attacker impersonation via
 secure peer validation such as that provided by TLS certificates. By definition,
 the addresses in these CIDRs are used in association with services that use the
-domain name but cannot calidate claims of the domain name. DNSSEC validation
+domain name but cannot validate claims of the domain name. DNSSEC validation
 will provide assurance that the IP addresses are those expected by the valid
 owner of the domain name.
 
@@ -161,8 +156,11 @@ owner of the domain name.
 Servers SHOULD avoid claiming very short prefixes in CIDRS records. It is not
 expected that a single domain name is legitimately associated with a short
 prefix. Clients MAY choose to ignore claims of association by CIDRS records
-with IPv4 prefixes shorter than ?? bits and IPv6 prefixes shorter than
-?? bits.
+with prefixes shorter than a preconfigured minimum length per IP version.
+This version of the text does not suggest defined values for minimum prefix
+lengths, though as a reasonable rule of thumb, domain name owners SHOULD NOT
+have prefixes in CIDRS records that include multiple ASNs to avoid clients
+considering their prefixes to be too short.
 
 Note that associated IP addresses SHOULD be restricted to IP addresses which a
 server reasonably expects a client will need to interact with the functionality
@@ -203,7 +201,7 @@ subsets of the CIDR. This is specifically not supported for the CIDRS RR type
 because of the added complexity this creates for implementors and the support
 for defining non-consecutive subnets for the same purpose. Implementors SHOULD
 reduce the number of CIDRs needed for a given domain name rather than have
-many long prefixes that cannot be grouped under fewr CIDRs without needing to
+many long prefixes that cannot be grouped under fewer CIDRs without needing to
 define the non-included gaps within them.
 
 ## Transition period workarounds
