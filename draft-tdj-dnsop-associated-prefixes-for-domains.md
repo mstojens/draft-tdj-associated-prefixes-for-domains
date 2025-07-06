@@ -5,6 +5,7 @@ category: std
 
 docname: draft-tdj-dnsop-associated-prefixes-for-domains-00
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
+v: 3
 keyword:
  - DNS
  - IP prefixes
