@@ -31,18 +31,37 @@ informative:
 
 --- abstract
 
-RFC9000 defines {alternate IP addresses} which enable discovery of IP addresses
-to be used in association with a service with a domain name that are potentially
-not discoverable as A/AAAA records for that domain name. This draft defines a
+RFC9000 defines a mechanism that allows servers to migrate clients
+to another IP address without name resolution. The new address may 
+not be discoverable as A/AAAA records for that domain name. This draft defines a
 mechanism that allows a client to get advance notice of associated IP addresses
 for a domain name as part of the DNS query.
 
 
 --- middle
 
+# Conventions and Definitions
+
+{::boilerplate bcp14-tagged}
+
+
 # Introduction
 
-(TODO: slightly more detailed version of abstract)
+It is common for services to be associated with domain names
+even if not every IP address used by the service are represented
+in A and AAAA records for the service's domain names. One example is
+teleconferencing, which often uses a media streaming protocol whose peer
+addresses are negotiated within a connection, such as the use of WebRTC.
+Another is QUIC's use of preferred addresses, defined in {{Section 9.6 of
+?RFC9000}}, which allows a server to migrate a client to another server IP
+address which may or may not have been resolvable from the domain name
+resolved to initiate the original connection.
+
+This document defines a mechanism for domain name owners to advertise
+any IP address prefixes that are associated with a domain name. This allows
+client peers to predict which IP addresses may end up in use when contacting
+a given service.
+
 
 # Terminology
 
@@ -161,7 +180,7 @@ lifetime of traffic flows of typical service usage. Doing so would encourage
 DNS stub resolvers and the processes calling DNS sutb resolver APIs to ignore
 TTL values in favor of supporting performant user experiences.
 
-## Complex messages {complexity}
+## Complex messages {#complexity}
 
 {{?RFC3123}} defines an experimental mechanism by which the APL RR type can both
 define CIDRs that are somehow associated with a domain name as well as negate
@@ -189,12 +208,6 @@ advertisement of IP addresses associated with a given name directly.
 
 
 
-
-# Conventions and Definitions
-
-{::boilerplate bcp14-tagged}
-
-
 # Security Considerations
 
 TODO Security
@@ -202,7 +215,9 @@ TODO Security
 
 # IANA Considerations
 
-This document has no IANA actions.
+TODO: new DNS RR type "CIDRS"
+
+TODO: new SVCB key "cidrs"
 
 
 --- back
